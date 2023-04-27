@@ -1,6 +1,6 @@
 # nftx-v2-subgraph
 
-Subgraph for NFTX Protocol V2
+## Subgraph for NFTX Protocol V2
 
 Mainnet Subgraph: https://thegraph.com/legacy-explorer/subgraph/nftx-project/nftx-v2
 
