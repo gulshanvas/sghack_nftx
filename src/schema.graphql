@@ -184,10 +184,7 @@ interface ActivityEvent @entity {
   vault: Vault!
   source: Bytes
   type: ActivityEventType!
-#   vaultMint: VaultMint
-#   vaultRedeem: VaultRedeem
-#   vaultSwap: VaultSwap
-    commonEntity: CommonEntity
+  commonEntity: CommonEntity
 }
 
 type Mint implements ActivityEvent @entity {
@@ -206,9 +203,9 @@ type Mint implements ActivityEvent @entity {
 
 type CommonEntity @entity {
     id: ID! #timestamp
-    mint: [Mint!]
-    redeem: [Redeem!]
-    swap: [Swap!]
+    mints: [Mint!]
+    redeems: [Redeem!]
+    swaps: [Swap!]
 }
 
 

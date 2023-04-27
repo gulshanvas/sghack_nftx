@@ -334,15 +334,15 @@ export function updateVaultMint(timestamp: BigInt, id: string): void {
     commonEntity = new CommonEntity(timestamp.toString());
     const mints = new Array<string>();
     mints.push(id);
-    commonEntity.mint = mints;
+    commonEntity.mints = mints;
     commonEntity.save();
     return;
   }
 
-  const mints = commonEntity.mint;
+  const mints = commonEntity.mints;
   if (mints) {
     mints.push(id);
-    commonEntity.mint = mints;
+    commonEntity.mints = mints;
     commonEntity.save();
   }
 
@@ -366,15 +366,15 @@ export function updateVaultSwap(timestamp: BigInt, id: string): void {
     commonEntity = new CommonEntity(timestamp.toString());
     const swaps = new Array<string>();
     swaps.push(id);
-    commonEntity.swap = swaps;
+    commonEntity.swaps = swaps;
     commonEntity.save();
     return;
   }
 
-  const swaps = commonEntity.swap;
+  const swaps = commonEntity.swaps;
   if (swaps) {
     swaps.push(id);
-    commonEntity.swap = swaps;
+    commonEntity.swaps = swaps;
     commonEntity.save();
   }
 }
@@ -417,15 +417,15 @@ export function updateVaultRedeem(timestamp: BigInt, id: string): void {
     commonEntity = new CommonEntity(timestamp.toString());
     const redeems = new Array<string>();
     redeems.push(id);
-    commonEntity.redeem = redeems;
+    commonEntity.redeems = redeems;
     commonEntity.save();
     return;
   }
 
-  const redeems = commonEntity.redeem;
+  const redeems = commonEntity.redeems;
   if (redeems) {
     redeems.push(id);
-    commonEntity.redeem = redeems;
+    commonEntity.redeems = redeems;
     commonEntity.save();
   }
 
