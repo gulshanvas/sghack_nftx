@@ -184,9 +184,10 @@ interface ActivityEvent @entity {
   vault: Vault!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+#   vaultMint: VaultMint
+#   vaultRedeem: VaultRedeem
+#   vaultSwap: VaultSwap
+    commonEntity: CommonEntity
 }
 
 type Mint implements ActivityEvent @entity {
@@ -200,25 +201,16 @@ type Mint implements ActivityEvent @entity {
   zapAction: ZapSell @derivedFrom(field: "vaultAction")
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
-type VaultMint @entity {
-    id:ID! #timestamp
-    mint: [Mint!]!
+type CommonEntity @entity {
+    id: ID! #timestamp
+    mint: [Mint!]
+    redeem: [Redeem!]
+    swap: [Swap!]
 }
 
-type VaultRedeem @entity {
-    id:ID! #timestamp
-    redeem: [Redeem!]!
-}
-
-type VaultSwap @entity {
-    id:ID! #timestamp
-    swap: [Swap!]!
-}
 
 type Swap implements ActivityEvent @entity {
   id: ID! # tx
@@ -235,9 +227,7 @@ type Swap implements ActivityEvent @entity {
   zapAction: ZapSwap @derivedFrom(field: "vaultAction")
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 type Redeem implements ActivityEvent @entity {
@@ -253,9 +243,7 @@ type Redeem implements ActivityEvent @entity {
   zapAction: ZapBuy @derivedFrom(field: "vaultAction")
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 type User @entity {
@@ -290,9 +278,7 @@ type Deposit implements ActivityEvent @entity {
   deposit: BigInt!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 type Withdrawal implements ActivityEvent @entity {
@@ -304,9 +290,7 @@ type Withdrawal implements ActivityEvent @entity {
   withdrawal: BigInt!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 type VaultCreated implements ActivityEvent @entity {
@@ -315,9 +299,7 @@ type VaultCreated implements ActivityEvent @entity {
   vault: Vault!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 
@@ -327,9 +309,7 @@ type VaultPublished implements ActivityEvent @entity {
   vault: Vault!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 type VaultShutdown implements ActivityEvent @entity {
@@ -338,9 +318,7 @@ type VaultShutdown implements ActivityEvent @entity {
   vault: Vault!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 type VaultNameChange implements ActivityEvent @entity {
@@ -353,9 +331,7 @@ type VaultNameChange implements ActivityEvent @entity {
   vault: Vault!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 type VaultFeeUpdate implements ActivityEvent @entity {
@@ -369,9 +345,7 @@ type VaultFeeUpdate implements ActivityEvent @entity {
   vault: Vault!
   source: Bytes
   type: ActivityEventType!
-  vaultMint: VaultMint
-  vaultRedeem: VaultRedeem
-  vaultSwap: VaultSwap
+  commonEntity: CommonEntity
 }
 
 

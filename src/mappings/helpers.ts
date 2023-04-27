@@ -43,9 +43,7 @@ import {
   VaultFeeUpdate,
   VaultNameChange,
   VaultShutdown,
-  VaultMint,
-  VaultRedeem,
-  VaultSwap,
+  CommonEntity
 } from '../types/schema';
 import { ERC20Metadata } from '../types/NFTXVaultFactoryUpgradeable/ERC20Metadata';
 import { ERC677Metadata } from '../types/NFTXVaultFactoryUpgradeable/ERC677Metadata';
@@ -323,29 +321,29 @@ export function getMint(txHash: Bytes, timestamp: BigInt, source: Address = ADDR
     mint.source = source;
 
     updateVaultMint(timestamp, mint.id);
-    mint.vaultMint = timestamp.toString();
+    mint.commonEntity = timestamp.toString();
 
   }
   return mint as Mint;
 }
 
 export function updateVaultMint(timestamp: BigInt, id: string): void {
-  let vaultMint = VaultMint.load(timestamp.toString());
+  let commonEntity = CommonEntity.load(timestamp.toString());
 
-  if (!vaultMint) {
-    vaultMint = new VaultMint(timestamp.toString());
+  if (!commonEntity) {
+    commonEntity = new CommonEntity(timestamp.toString());
     const mints = new Array<string>();
     mints.push(id);
-    vaultMint.mint = mints;
-    vaultMint.save();
+    commonEntity.mint = mints;
+    commonEntity.save();
     return;
   }
 
-  const mints = vaultMint.mint;
+  const mints = commonEntity.mint;
   if (mints) {
     mints.push(id);
-    vaultMint.mint = mints;
-    vaultMint.save();
+    commonEntity.mint = mints;
+    commonEntity.save();
   }
 
 }
@@ -356,30 +354,29 @@ export function getSwap(txHash: Bytes,timestamp: BigInt, source: Address = ADDRE
     swap = new Swap("SWAP-" + txHash.toHexString());
     swap.source = source;
     updateVaultSwap(timestamp, swap.id);
-    swap.vaultSwap = timestamp.toString();
+    swap.commonEntity = timestamp.toString();
   }
   return swap as Swap;
 }
 
 export function updateVaultSwap(timestamp: BigInt, id: string): void {
-  let vaultSwap = VaultSwap.load(timestamp.toString());
+  let commonEntity = CommonEntity.load(timestamp.toString());
 
-  if (!vaultSwap) {
-    vaultSwap = new VaultSwap(timestamp.toString());
+  if (!commonEntity) {
+    commonEntity = new CommonEntity(timestamp.toString());
     const swaps = new Array<string>();
     swaps.push(id);
-    vaultSwap.swap = swaps;
-    vaultSwap.save();
+    commonEntity.swap = swaps;
+    commonEntity.save();
     return;
   }
 
-  const swaps = vaultSwap.swap;
+  const swaps = commonEntity.swap;
   if (swaps) {
     swaps.push(id);
-    vaultSwap.swap = swaps;
-    vaultSwap.save();
+    commonEntity.swap = swaps;
+    commonEntity.save();
   }
-
 }
 
 export function getZap(
@@ -408,28 +405,28 @@ export function getRedeem(txHash: Bytes, timestamp: BigInt, source: Address = AD
     redeem = new Redeem("REDEEM-" + txHash.toHexString());
     redeem.source = source;
     updateVaultRedeem(timestamp, redeem.id);
-    redeem.vaultRedeem = timestamp.toString();
+    redeem.commonEntity = timestamp.toString();
   }
   return redeem as Redeem;
 }
 
 export function updateVaultRedeem(timestamp: BigInt, id: string): void {
-  let vaultRedeem = VaultRedeem.load(timestamp.toString());
+  let commonEntity = CommonEntity.load(timestamp.toString());
 
-  if (!vaultRedeem) {
-    vaultRedeem = new VaultRedeem(timestamp.toString());
+  if (!commonEntity) {
+    commonEntity = new CommonEntity(timestamp.toString());
     const redeems = new Array<string>();
     redeems.push(id);
-    vaultRedeem.redeem = redeems;
-    vaultRedeem.save();
+    commonEntity.redeem = redeems;
+    commonEntity.save();
     return;
   }
 
-  const redeems = vaultRedeem.redeem;
+  const redeems = commonEntity.redeem;
   if (redeems) {
     redeems.push(id);
-    vaultRedeem.redeem = redeems;
-    vaultRedeem.save();
+    commonEntity.redeem = redeems;
+    commonEntity.save();
   }
 
 }
